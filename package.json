@@ -1,0 +1,18 @@
+{
+     "name": "emaster-connection-api",
+     "version": "1.0.0",
+     "description": "eMaster connection API",
+     "main": "index.js",
+     "scripts": {
+          "start": "node index.js"
+     },
+     "author": "Houssem Hajlaoui - @venatoria",
+     "license": "ISC",
+     "dependencies": {
+          "body-parser": "^1.15.1",
+          "dota2": "^6.1.1",
+          "express": "^4.13.4",
+          "request": "^2.87.0",
+          "steam": "^1.4.0"
+     }
+}
