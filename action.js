@@ -4,6 +4,8 @@
 
 const steam = require('steam')
 const dota2 = require('dota2')
+steam.servers = require('./config/steam_servers.json')
+
 let steamClient
 let steamUser
 let Dota2
@@ -34,7 +36,7 @@ function respond(event, cb) {
      console.log ('Dota')
      console.log(Dota2)
      console.log ('SteamUser')
-     console.log(steamUser) 
+     console.log(steamUser)
 
      steamClient.connect()
 
