@@ -1,6 +1,6 @@
 # eMasters connections API
 
-Author : Houssem Hajlaoui (@venatoria)
+**eMasters**
 
 ## Purpose
 
@@ -29,4 +29,4 @@ Our API uses the following Node JS packages :
 -   bodyParser
 -   request
 -   steam
--   dota2 
+-   dota2
