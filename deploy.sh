@@ -18,7 +18,7 @@ RUN mkdir -p ~/eMasters-connection-api
 WORKDIR ~/eMasters-connection-api
 COPY . .
 RUN npm install
-EXPOSE 80
+EXPOSE 8080
 CMD [ "node", "index.js" ]
 EOF
 
@@ -27,5 +27,5 @@ sudo docker build -t venatoria/emasters-connection-api .
 echo "=> Running eMasters Connection API.."
 
 #Run the app within the container
-sudo docker -p 8080:80 run -d venatoria/emasters-connection-api
+sudo docker run -d venatoria/emasters-connection-api
 echo "=> Running eMasters Connection API.."
