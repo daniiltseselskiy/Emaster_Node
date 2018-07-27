@@ -238,6 +238,7 @@ function startLobby(data, cb) {
 }
 
 function leaveLobby(id) {
+     console.log('Leaving lobby!')
      Dota2.abandonCurrentGame()
      Dota2.leavePracticeLobby()
      Dota2.leaveChat('Lobby_' + id)
@@ -250,7 +251,7 @@ function leaveLobby(id) {
                "httpMethod": "PATCH"
           }
      }
-
+     console.log('Invoking PATCH to free the bot')
      lambda.invoke({
           FunctionName: `proak-api-${constants.STAGE}-gameDispatcher`,
           Payload: JSON.stringify(jsonPayload),
