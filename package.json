@@ -10,7 +10,7 @@
      "scripts": {
           "start": "node index.js"
      },
-     "author": "Houssem Hajlaoui - @venatoria",
+     "author": "Marcus, Venatoria",
      "license": "ISC",
      "dependencies": {
           "aws-sdk": "^2.279.1",
