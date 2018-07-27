@@ -22,6 +22,18 @@ EXPOSE 80
 CMD [ "node", "index.js" ]
 EOF
 
+#Cleaning previous runs
+echo "=> Cleaning all containers"
+
+#Stop all containers except the db one
+sudo docker stop $(sudo docker ps -a -q)
+
+# Delete all containers except the db one
+sudo docker rm $(sudo docker ps -a -q)
+
+# Delete all images except the db one
+sudo docker rmi $(sudo docker images -q)
+
 #Build the Docker container
 sudo docker build -t venatoria/emasters-connection-api .
 echo "=> Running eMasters Connection API.."
