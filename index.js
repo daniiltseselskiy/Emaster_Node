@@ -34,7 +34,6 @@ router.route('/').get(function(req, res) {
 
 // Endpoint that lanches a connection
 router.route('/connect').post(function(req, res) {
-     //console.log('body', req.body)
      action.respond(req.body);
 });
 
@@ -51,7 +50,7 @@ var port = process.env.PORT || 8080;
 
 // Let's fire up the server ;)
 app.listen(port);
-console.log('eMaster connection API is running.. and it happens on localhost:' + port);
+console.log('eMasterss connection API is running.. and it happens on port' + port);
 
 //Export for test units to see
 module.exports = app;

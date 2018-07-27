@@ -14,14 +14,8 @@ let Dota2
 function respond(event, cb) {
      console.log('dota2/lobby/create')
 
-     console.log('INITIAL EVENT called from dispatcher')
-     console.log(event)
-
      let data = event
      let bot = data['bot']
-
-     console.log('INITIAL bot')
-     console.log(bot)
 
      let logOnDetails = {
           'account_name': bot['username'],
@@ -33,10 +27,6 @@ function respond(event, cb) {
      Dota2 = new dota2.Dota2Client(steamClient, true)
 
      console.log('going to connect to steam')
-     console.log ('Dota')
-     console.log(Dota2)
-     console.log ('SteamUser')
-     console.log(steamUser)
 
      steamClient.connect()
 
@@ -74,8 +64,7 @@ function respond(event, cb) {
 }
 
 function createLobby(data, cb) {
-     console.log('####### CREATE LOBBY ########')
-     console.log(data)
+
      let properties = {
           'game_name': 'eMasters-' + data['sitngo']['id'].substr(0, 10),
           'pass_key': data['sitngo']['id'],
@@ -242,6 +231,19 @@ function leaveLobby(id) {
      Dota2.leavePracticeLobby()
      Dota2.leaveChat('Lobby_' + id)
      disconnect()
+     // Now let's inform the dispatcher that this bot is free
+     lambda.invoke({
+           FunctionName: `proak-api-${constants.STAGE}-gameDispatcher`,
+           Payload: JSON.stringify(jsonPayload),
+           InvocationType: 'Event'
+         }, function (error, data) {
+           if (error !== null) {
+             console.log(error)
+             reject(error)
+           } else {
+             resolve(data)
+           }
+         })
 }
 
 function disconnect() {

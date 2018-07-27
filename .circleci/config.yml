@@ -1,0 +1,23 @@
+version: 2
+#
+# CircleCI Config for eMasters Connection API
+# Full CI/CD Workflow
+# Can extend later if needed
+jobs:
+    # The deploy job
+    deploy:
+        working_directory: ~/emasters-connnection-api
+        docker:
+            - image: circleci/node:10-browsers
+        steps:
+            - checkout
+            - run:
+                 name: Deploying to EC2
+                 # All deployement steps are in one file included
+                 # deploy.sh will fetch code, run docker, and launch app.
+                 command: ssh ubuntu@dev.dash.appgrades.io "sh deploy.sh"
+workflows:
+    version: 2
+    build_and_deploy:
+        jobs:
+            - deploy
