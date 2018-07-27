@@ -45,12 +45,13 @@ app.use('/', router);
 //                                 SERVER and EXPOSURE
 // =============================================================================
 
-// We will be using the port 8080
-var port = process.env.PORT || 8080;
+// Let's define host and port
+const PORT = 8080;
+const HOST = '0.0.0.0';
 
 // Let's fire up the server ;)
-app.listen(port);
-console.log('eMasterss connection API is running.. and it happens on port' + port);
+app.listen(PORT, HOST);
+console.log('eMasterss connection API is running.. and it happens in '+ HOST + ' on port ' + PORT);
 
 //Export for test units to see
 module.exports = app;

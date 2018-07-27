@@ -27,5 +27,5 @@ sudo docker build -t venatoria/emasters-connection-api .
 echo "=> Running eMasters Connection API.."
 
 #Run the app within the container
-sudo docker run -d venatoria/emasters-connection-api
+sudo docker -p 8080:80 run -d venatoria/emasters-connection-api
 echo "=> Running eMasters Connection API.."
