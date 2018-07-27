@@ -47,7 +47,7 @@ function respond(event, cb) {
                Dota2.launch()
                Dota2.on('ready', function() {
                     console.log('Node-dota2 ready.')
-                    return createLobby(data, cb)
+                    createLobby(data, cb)
                })
 
                Dota2.on('unready', function onUnready() {
@@ -94,17 +94,11 @@ function createLobby(data, cb) {
                console.log(err + ' - ' + JSON.stringify(response))
                //return cb(createError('Could not createLobby lobby: ' + error), null)
                console.log('Could not createLobby lobby: ' + error)
-          } else if (response.eresult !== steam.EResult.OK) {
-               //return cb(createError('Fail to createLobby lobby.'), null)
-               console.log('Fail to createLobby lobby.')
           }
+
           Dota2.practiceLobbyKickFromTeam(Dota2.AccountID)
           data['sitngo']['status'] = 'ready'
-          // updateSitngo(data['sitngo']).then(result => {
-          //      data['sitngo'] = result
-          // }).catch(err => {
-          //      return cb(err, null)
-          // })
+          //TODO: should notify API that the lobby is ready
      })
 
      let launching = false
@@ -116,13 +110,16 @@ function createLobby(data, cb) {
           if (checkNumberOfPlayers(JSON.parse(JSON.stringify(lobby)), numberOfPlayers)) {
                if (!launching) {
                     launching = true
-                    return startLobby(data, cb)
+                    startLobby(data, cb)
                }
           }
      })
 }
 
 function checkNumberOfPlayers(lobby, maxPlayers) {
+     //TODO: this return is for test purpose, should remove later
+     return true
+
      let members = lobby['members']
 
      // if the total number of members is less than expected just return false
@@ -227,13 +224,8 @@ function startLobby(data, cb) {
                console.log(err + ' - ' + JSON.stringify(response))
                //return cb(createError('Could not start lobby: ' + error), null)
                console.log('Could not start lobby: ' + error)
-          } else if (response.eresult !== steam.EResult.OK) {
-               //return cb(createError('Fail to start lobby.'), null)
-               console.log('Fail to start lobby.')
-          } else {
-               leaveLobby(data['sitngo']['metadata']['lobby_id'],)
-               return cb(null, data)
           }
+          leaveLobby(data['sitngo']['metadata']['lobby_id'],)
      })
 }
 
@@ -274,24 +266,6 @@ function disconnect() {
 function createError(message) {
      return {message: message}
 }
-
-// function updateSitngo(data) {
-//      return new Promise((resolve, reject) => {
-//           Sitngo.dynamodb().update({
-//                id: data['id'],
-//                status: data['status'],
-//                metadata: data['metadata']
-//           }, {
-//                overwrite: true
-//           }, function(err, data) {
-//                if (err === null) {
-//                     resolve(data)
-//                } else {
-//                     reject(err)
-//                }
-//           })
-//      })
-// }
 
 // Export entry module
 module.exports = {
