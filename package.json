@@ -9,6 +9,7 @@
      "author": "Houssem Hajlaoui - @venatoria",
      "license": "ISC",
      "dependencies": {
+          "aws-sdk": "^2.279.1",
           "body-parser": "^1.15.1",
           "dota2": "^6.1.1",
           "express": "^4.13.4",

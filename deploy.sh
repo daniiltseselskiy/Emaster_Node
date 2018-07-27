@@ -18,7 +18,7 @@ RUN mkdir -p ~/eMasters-connection-api
 WORKDIR ~/eMasters-connection-api
 COPY . .
 RUN npm install
-EXPOSE 8080
+EXPOSE 80
 CMD [ "node", "index.js" ]
 EOF
 

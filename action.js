@@ -10,6 +10,10 @@ let steamClient
 let steamUser
 let Dota2
 
+// Init lambda to call our dispatcher ro free a bot
+var AWS = require('aws-sdk')
+var lambda = new AWS.Lambda()
+
 // Multi - Create
 function respond(event, cb) {
      console.log('dota2/lobby/create')
@@ -220,7 +224,7 @@ function startLobby(data, cb) {
           } else if (response.eresult !== steam.EResult.OK) {
                return cb(createError('Fail to start lobby.'), null)
           } else {
-               leaveLobby(data['sitngo']['metadata']['lobby_id'])
+               leaveLobby(data['sitngo']['metadata']['lobby_id'],)
                return cb(null, data)
           }
      })
@@ -231,19 +235,27 @@ function leaveLobby(id) {
      Dota2.leavePracticeLobby()
      Dota2.leaveChat('Lobby_' + id)
      disconnect()
+
      // Now let's inform the dispatcher that this bot is free
+     let jsonPayload = {
+          "body": {},
+          "requestContext": {
+               "httpMethod": "PATCH"
+          }
+     }
+
      lambda.invoke({
-           FunctionName: `proak-api-${constants.STAGE}-gameDispatcher`,
-           Payload: JSON.stringify(jsonPayload),
-           InvocationType: 'Event'
-         }, function (error, data) {
-           if (error !== null) {
-             console.log(error)
-             reject(error)
-           } else {
-             resolve(data)
-           }
-         })
+          FunctionName: `proak-api-${constants.STAGE}-gameDispatcher`,
+          Payload: JSON.stringify(jsonPayload),
+          InvocationType: 'Event'
+     }, function(error, data) {
+          if (error !== null) {
+               console.log(error)
+               reject(error)
+          } else {
+               resolve(data)
+          }
+     })
 }
 
 function disconnect() {
