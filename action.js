@@ -66,7 +66,7 @@ function respond(event, cb) {
      steamClient.on('error', function(error) {
           console.log('Connection closed by server: ', error)
           //return cb(createError('Connection closed by server: ' + error), null)
-          console.log('Connection closed by server: ' + error))
+          console.log('Connection closed by server: ' + error)
      })
 }
 
