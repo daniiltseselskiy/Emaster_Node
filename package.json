@@ -3,6 +3,10 @@
      "version": "1.0.0",
      "description": "eMaster connection API",
      "main": "index.js",
+     "repository": {
+          "type": "git",
+          "url": "https://github.com/mataide/proak-dota2.git"
+     },
      "scripts": {
           "start": "node index.js"
      },
