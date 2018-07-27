@@ -96,7 +96,7 @@ function createLobby(data, cb) {
                console.log('Could not createLobby lobby: ' + error)
           } else if (response.eresult !== steam.EResult.OK) {
                //return cb(createError('Fail to createLobby lobby.'), null)
-               console.log('Could not createLobby lobby: ' + error)
+               console.log('Fail to createLobby lobby.')
           }
           Dota2.practiceLobbyKickFromTeam(Dota2.AccountID)
           data['sitngo']['status'] = 'ready'
