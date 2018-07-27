@@ -12,6 +12,7 @@ let Dota2
 
 // Init lambda to call our dispatcher ro free a bot
 var AWS = require('aws-sdk')
+AWS.config.region = 'us-east-2';
 var lambda = new AWS.Lambda()
 
 // Multi - Create
@@ -243,18 +244,21 @@ function leaveLobby(id) {
                "httpMethod": "PATCH"
           }
      }
+     //jsonPayload['body'] = data['bot']
      console.log('Invoking PATCH to free the bot')
      lambda.invoke({
-          FunctionName: `proak-api-${constants.STAGE}-gameDispatcher`,
+          //FunctionName: `proak-api-${constants.STAGE}-gameDispatcher`,
+          FunctionName: `proak-api-dev-gameDispatcher`,
           Payload: JSON.stringify(jsonPayload),
           InvocationType: 'Event'
      }, function(error, data) {
           if (error !== null) {
                console.log(error)
-               reject(error)
-          } else {
-               resolve(data)
+               //reject(error)
           }
+          // else {
+          //      resolve(data)
+          // }
      })
 }
 
