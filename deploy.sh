@@ -23,7 +23,7 @@ CMD [ "npm start" ]
 EOF
 
 #Build the Docker container
-docker build -t emasters-connection-api .
+sudo docker build -t emasters-connection-api .
 echo "=> Running eMasters Connection API.."
 
 #Run the app within the container
