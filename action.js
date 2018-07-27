@@ -52,18 +52,21 @@ function respond(event, cb) {
 
                Dota2.on('unready', function onUnready() {
                     console.log('Node-dota2 unready.')
-                    return cb(createError('Could not start dota2 client.'), null)
+                    //return cb(createError('Could not start dota2 client.'), null)
+                    console.log('Could not start dota2 client.')
                })
           }
      })
      steamClient.on('loggedOff', function(eresult) {
           console.log('Logged off from Steam: ', eresult)
-          return cb(createError('Logged off from Steam.' + eresult), null)
+          //return cb(createError('Logged off from Steam.' + eresult), null)
+          console.log('Logged off from Steam.' + eresult)
      })
 
      steamClient.on('error', function(error) {
           console.log('Connection closed by server: ', error)
-          return cb(createError('Connection closed by server: ' + error), null)
+          //return cb(createError('Connection closed by server: ' + error), null)
+          console.log('Connection closed by server: ' + error))
      })
 }
 
@@ -89,9 +92,11 @@ function createLobby(data, cb) {
      Dota2.createPracticeLobby(properties, function(err, response) {
           if (err) {
                console.log(err + ' - ' + JSON.stringify(response))
-               return cb(createError('Could not createLobby lobby: ' + error), null)
+               //return cb(createError('Could not createLobby lobby: ' + error), null)
+               console.log('Could not createLobby lobby: ' + error)
           } else if (response.eresult !== steam.EResult.OK) {
-               return cb(createError('Fail to createLobby lobby.'), null)
+               //return cb(createError('Fail to createLobby lobby.'), null)
+               console.log('Could not createLobby lobby: ' + error)
           }
           Dota2.practiceLobbyKickFromTeam(Dota2.AccountID)
           data['sitngo']['status'] = 'ready'
@@ -220,9 +225,11 @@ function startLobby(data, cb) {
      Dota2.launchPracticeLobby(function(err, response) {
           if (err) {
                console.log(err + ' - ' + JSON.stringify(response))
-               return cb(createError('Could not start lobby: ' + error), null)
+               //return cb(createError('Could not start lobby: ' + error), null)
+               console.log('Could not start lobby: ' + error)
           } else if (response.eresult !== steam.EResult.OK) {
-               return cb(createError('Fail to start lobby.'), null)
+               //return cb(createError('Fail to start lobby.'), null)
+               console.log('Fail to start lobby.')
           } else {
                leaveLobby(data['sitngo']['metadata']['lobby_id'],)
                return cb(null, data)
