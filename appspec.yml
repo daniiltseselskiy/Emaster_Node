@@ -1,0 +1,21 @@
+version: 0.0
+os: linux
+files:
+   - source: .
+     destination: /var/www/proak-dota2
+permissions:
+   - object: /var/www/proak-dota2
+      pattern: "**"
+      owner: root
+      group: root
+      mode: 755
+      type:
+        - file
+hooks:
+   BeforeInstall:
+     - location: scripts/beforeinstall.sh
+       runas: root
+   AterInstall:
+     - location: scripts/afterinstall.sh
+       runas:root
+  
