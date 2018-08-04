@@ -14,8 +14,9 @@ permissions:
 hooks:
    BeforeInstall:
      - location: scripts/beforeinstall.sh
+       timour: 300
        runas: root
    AterInstall:
      - location: scripts/afterinstall.sh
-       runas:root
-       
+       timeout: 300
+       runas: root
