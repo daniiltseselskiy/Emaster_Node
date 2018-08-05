@@ -6,7 +6,7 @@ files:
 hooks:
    BeforeInstall:
      - location: scripts/beforeinstall.sh
-       timour: 300
+       timout: 300
        runas: root
    AterInstall:
      - location: scripts/afterinstall.sh
