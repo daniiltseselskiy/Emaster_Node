@@ -34,7 +34,7 @@ router.route('/').get(function(req, res) {
 
 // Endpoint that lanches a connection
 router.route('/connect').post(function(req, res) {
-     action.respond(req.body);
+     action.respond(req.body, res);
 });
 
 

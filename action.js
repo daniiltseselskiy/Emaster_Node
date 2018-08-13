@@ -1,6 +1,7 @@
 'use strict'
 
 //const {Sitngo} = require('@proak/proak-model')
+import { Api } from './lib/response'
 
 const steam = require('steam')
 const dota2 = require('dota2')
@@ -69,6 +70,7 @@ function respond(event, cb) {
           //return cb(createError('Connection closed by server: ' + error), null)
           console.log('Connection closed by server: ' + error)
      })
+     return cb.send(Api.response({status: true}))
 }
 
 function createLobby(data, cb) {
